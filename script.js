@@ -12,7 +12,7 @@ function getComputerChoice(){
 function getPlayerSelection(){
     playerSelection = prompt("Select wisefully").toLowerCase();
     return playerSelection;
-}
+}  
 
 function playRound(playerSelection, computerSelection){
     if(playerSelection === "rock" && computerSelection === "rock"){
@@ -42,6 +42,53 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+
+function playGame(event) {
+    playerSelection = event.target.textContent.toLowerCase();
+    getComputerChoice();
+    roundResult.textContent = playRound(playerSelection, computerSelection);
+    if(winCount >= 5){
+        alert("You've won");
+        winCount = 0;
+        lossCount = 0;
+    } else if (lossCount >= 5){
+        alert("You lost! Try again");
+        winCount = 0;
+        lossCount = 0;
+    } 
+    totalWins.textContent = winCount.toString();
+    totalLosses.textContent = lossCount.toString();
+
+//    console.log(computerSelection);
+//    console.log(playerSelection);
+//    console.log("you've won this many times " + winCount);
+//    console.log("you've lost this many times " + lossCount);
+}
+
+
+let playerSelection;
+let computerSelection;
+let winCount = 0;
+let lossCount = 0;
+const roundResult = document.querySelector(".roundResult");
+const totalWins = document.querySelector(".totalWins");
+const totalLosses = document.querySelector(".totalLosses");
+
+
+
+const selections = document.querySelectorAll(".selection");
+selections.forEach(selection => {
+    selection.addEventListener('click', playGame)
+});
+
+
+
+
+
+
+
+
+/* 
 function game(){
     for (let i = 0; i<5; i++){
         getPlayerSelection();
@@ -55,17 +102,7 @@ function game(){
     } else {
         console.log("It's a draw, try again");
     }
-}
-
-
-
-
-let playerSelection;
-let computerSelection;
-let winCount = 0;
-let lossCount = 0;
+} 
 
 game();
-
-console.log("you've won this many times " + winCount);
-console.log("you've lost this many times " + lossCount);
+*/
